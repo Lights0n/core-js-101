@@ -203,8 +203,26 @@ function extractEmails(str) {
  *             '└──────────┘\n'
  *
  */
-function getRectangleString(/* width, height */) {
-  throw new Error('Not implemented');
+function getRectangleString(width, height) {
+  const ansArr = [];
+  let syaay;
+  for (let i = 0; i < height; i += 1) {
+    let str = '';
+    if (i === 0) {
+      str = `┌${str.padStart(width - 2, '─')}`;
+      str += '┐\n';
+    } else if (i === height - 1) {
+      str = `└${str.padStart(width - 2, '─')}`;
+      str += '┘\n';
+    } else {
+      str = `│${str.padStart(width - 2, ' ')}`;
+      str += '│\n';
+    }
+    str = str.padStart(width, '─');
+    ansArr.push(str);
+    syaay = ansArr.join('');
+  }
+  return syaay;
 }
 
 
@@ -224,8 +242,25 @@ function getRectangleString(/* width, height */) {
  *    => 'NOPQRSTUVWXYZABCDEFGHIJKLMnopqrstuvwxyzabcdefghijklm'
  *
  */
-function encodeToRot13(/* str */) {
-  throw new Error('Not implemented');
+function encodeToRot13(value) {
+  const ans = [];
+  const arr = [...value];
+  for (let i = 0; i < arr.length; i += 1) {
+    const charCode = arr[i].charCodeAt(0);
+    let newChar;
+    if (charCode >= 110 && charCode <= 122) {
+      newChar = String.fromCharCode(97 + (12 - (122 - charCode)));
+    } else if (charCode >= 78 && charCode <= 90) {
+      newChar = String.fromCharCode(65 + (12 - (90 - charCode)));
+    } else if ((charCode >= 65 && charCode <= 90) || (charCode >= 90 && charCode <= 122)) {
+      newChar = String.fromCharCode(+charCode + 13);
+    } else {
+      // https://stackoverflow.com/questions/94037/convert-character-to-ascii-code-in-javascript
+      newChar = String.fromCharCode(charCode);
+    }
+    ans.push(newChar);
+  }
+  return ans.join('');
 }
 
 /**
@@ -274,8 +309,13 @@ function isString(value) {
  *   'Q♠' => 50
  *   'K♠' => 51
  */
-function getCardId(/* value */) {
-  throw new Error('Not implemented');
+function getCardId(value) {
+  const deck = ['A♣', '2♣', '3♣', '4♣', '5♣', '6♣', '7♣', '8♣', '9♣', '10♣', 'J♣', 'Q♣', 'K♣',
+    'A♦', '2♦', '3♦', '4♦', '5♦', '6♦', '7♦', '8♦', '9♦', '10♦', 'J♦', 'Q♦', 'K♦',
+    'A♥', '2♥', '3♥', '4♥', '5♥', '6♥', '7♥', '8♥', '9♥', '10♥', 'J♥', 'Q♥', 'K♥',
+    'A♠', '2♠', '3♠', '4♠', '5♠', '6♠', '7♠', '8♠', '9♠', '10♠', 'J♠', 'Q♠', 'K♠',
+  ];
+  return deck.indexOf(value);
 }
 
 
