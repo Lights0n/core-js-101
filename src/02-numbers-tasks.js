@@ -19,8 +19,8 @@
  *   5, 10 => 50
  *   5, 5  => 25
  */
-function getRectangleArea(/* width, height */) {
-  throw new Error('Not implemented');
+function getRectangleArea(width, height) {
+  return width * height;
 }
 
 
@@ -35,8 +35,8 @@ function getRectangleArea(/* width, height */) {
  *   3.14 => 19.729201864543903
  *   0    => 0
  */
-function getCircleCircumference(/* radius */) {
-  throw new Error('Not implemented');
+function getCircleCircumference(radius) {
+  return 2 * Math.PI * radius;
 }
 
 /**
@@ -51,8 +51,15 @@ function getCircleCircumference(/* radius */) {
  *  10, 0  => 5
  *  -3, 3  => 0
  */
-function getAverage(/* value1, value2 */) {
-  throw new Error('Not implemented');
+function getAverage(value1, value2) {
+  if (typeof (value1) === 'bigint' || typeof (value2) === 'bigint') {
+    // eslint-disable-next-line no-undef, no-param-reassign
+    const val1 = Number.BigInt(value1);
+    const val2 = Number.BigInt(value2);
+    console.log(val1);
+    console.log(val2);
+  }
+  return (value1 + value2) / 2;
 }
 
 /**
@@ -201,8 +208,17 @@ function roundToPowerOfTen(/* num, pow */) {
  *   16 => false
  *   17 => true
  */
-function isPrime(/* n */) {
-  throw new Error('Not implemented');
+function isPrime(n) {
+  const simplePrime = [1, 2, 3, 5, 7, 11, 13];
+  if (simplePrime.includes(n)) {
+    return true;
+  }
+  for (let i = 1; i < simplePrime.length; i += 1) {
+    if (n % simplePrime[i] === 0) {
+      return false;
+    }
+  }
+  return true;
 }
 
 /**
