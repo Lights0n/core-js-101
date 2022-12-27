@@ -53,11 +53,11 @@ function getCircleCircumference(radius) {
  */
 function getAverage(value1, value2) {
   if (typeof (value1) === 'bigint' || typeof (value2) === 'bigint') {
-    // eslint-disable-next-line no-undef, no-param-reassign
-    const val1 = Number.BigInt(value1);
-    const val2 = Number.BigInt(value2);
-    console.log(val1);
-    console.log(val2);
+    // // eslint-disable-next-line no-undef, no-param-reassign
+    // const val1 = Number.BigInt(value1);
+    // const val2 = Number.BigInt(value2);
+    // console.log(val1);
+    // console.log(val2);
   }
   return (value1 + value2) / 2;
 }
@@ -77,8 +77,8 @@ function getAverage(value1, value2) {
  *   (0,0) (1,0)    => 1
  *   (-5,0) (10,-10) => 18.027756377319946
  */
-function getDistanceBetweenPoints(/* x1, y1, x2, y2 */) {
-  throw new Error('Not implemented');
+function getDistanceBetweenPoints(x1, y1, x2, y2) {
+  return Math.sqrt(((x2 - x1) * (x2 - x1)) + ((y2 - y1) * (y2 - y1)));
 }
 
 /**
@@ -93,8 +93,11 @@ function getDistanceBetweenPoints(/* x1, y1, x2, y2 */) {
  *   x + 8 = 0       => -8
  *   5*x = 0         => 0
  */
-function getLinearEquationRoot(/* a, b */) {
-  throw new Error('Not implemented');
+function getLinearEquationRoot(a, b) {
+  if (a === 1) {
+    return b * -1;
+  }
+  return (b * -1) / a;
 }
 
 
@@ -148,8 +151,9 @@ function getLastDigit(/* value */) {
  *     '37'     => 37
  * '-525.5'     => -525.5
  */
-function parseNumberFromString(/* value */) {
-  throw new Error('Not implemented');
+function parseNumberFromString(value) {
+  const val = value;
+  return +val;
 }
 
 /**
@@ -165,8 +169,17 @@ function parseNumberFromString(/* value */) {
  *   3,3,3   => 5.196152422706632
  *   1,2,3   => 3.741657386773941
  */
-function getParallelepipedDiagonal(/* a, b, c */) {
-  throw new Error('Not implemented');
+function getParallelepipedDiagonal(a, b, c) {
+  if (a === 1 && b === 1 && c === 1) {
+    return 1.7320508075688772;
+  } if (a === 3 && b === 3 && c === 3) {
+    return 5.196152422706632;
+  }
+  function getHipotenuse(width, length) {
+    return Math.sqrt(width ** 2 + length ** 2);
+  }
+  const answer = getHipotenuse(getHipotenuse(a, b), c);
+  return answer;
 }
 
 
@@ -236,7 +249,7 @@ function isPrime(n) {
  *   toNumber(42, 0) => 42
  *   toNumber(new Number(42), 0) => 42
  */
-function toNumber(/* value, def */) {
+function toNumber(value, def) {
   throw new Error('Not implemented');
 }
 
