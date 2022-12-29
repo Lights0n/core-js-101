@@ -52,12 +52,8 @@ function getCircleCircumference(radius) {
  *  -3, 3  => 0
  */
 function getAverage(value1, value2) {
-  if (typeof (value1) === 'bigint' || typeof (value2) === 'bigint') {
-    // // eslint-disable-next-line no-undef, no-param-reassign
-    // const val1 = Number.BigInt(value1);
-    // const val2 = Number.BigInt(value2);
-    // console.log(val1);
-    // console.log(val2);
+  if (value1 === value2) {
+    return value1;
   }
   return (value1 + value2) / 2;
 }
@@ -135,8 +131,10 @@ function getAngleBetweenVectors(/* x1, y1, x2, y2 */) {
  *     5     => 5
  *     0     => 0
  */
-function getLastDigit(/* value */) {
-  throw new Error('Not implemented');
+function getLastDigit(value) {
+  // throw new Error('Not implemented');
+  const val = String(value);
+  return +[...val][val.length - 1];
 }
 
 
@@ -200,8 +198,9 @@ function getParallelepipedDiagonal(a, b, c) {
  *   1678, 2  => 1700
  *   1678, 3  => 2000
  */
-function roundToPowerOfTen(/* num, pow */) {
-  throw new Error('Not implemented');
+function roundToPowerOfTen(num, pow) {
+  const res = num / (10 ** pow);
+  return Math.round(res) * 10 ** pow;
 }
 
 /**
@@ -250,7 +249,10 @@ function isPrime(n) {
  *   toNumber(new Number(42), 0) => 42
  */
 function toNumber(value, def) {
-  throw new Error('Not implemented');
+  if (!(Number.isNaN(+value))) {
+    return +value;
+  }
+  return def;
 }
 
 module.exports = {
