@@ -27,8 +27,16 @@
  *  21 => 'Fizz'
  *
  */
-function getFizzBuzz(/* num */) {
-  throw new Error('Not implemented');
+function getFizzBuzz(num) {
+  // throw new Error('Not implemented');
+  if (num % 3 === 0 && num % 5 === 0) {
+    return 'FizzBuzz';
+  } if (num % 3 === 0) {
+    return 'Fizz';
+  } if (num % 5 === 0) {
+    return 'Buzz';
+  }
+  return num;
 }
 
 
@@ -43,8 +51,12 @@ function getFizzBuzz(/* num */) {
  *   5  => 120
  *   10 => 3628800
  */
-function getFactorial(/* n */) {
-  throw new Error('Not implemented');
+function getFactorial(n) {
+  let sasa = 1;
+  for (let i = 1; i <= n; i += 1) {
+    sasa *= i;
+  }
+  return sasa;
 }
 
 
@@ -60,8 +72,12 @@ function getFactorial(/* n */) {
  *   5,10  =>  45 ( = 5+6+7+8+9+10 )
  *   -1,1  =>  0  ( = -1 + 0 + 1 )
  */
-function getSumBetweenNumbers(/* n1, n2 */) {
-  throw new Error('Not implemented');
+function getSumBetweenNumbers(n1, n2) {
+  let saas = 0;
+  for (let i = n1; i <= n2; i += 1) {
+    saas += i;
+  }
+  return saas;
 }
 
 
@@ -80,8 +96,11 @@ function getSumBetweenNumbers(/* n1, n2 */) {
  *   10,1,1   =>  false
  *   10,10,10 =>  true
  */
-function isTriangle(/* a, b, c */) {
-  throw new Error('Not implemented');
+function isTriangle(a, b, c) {
+  if (((a + b) > c) && ((c + b) > a) && ((a + c) > b)) {
+    return true;
+  }
+  return false;
 }
 
 
@@ -119,6 +138,10 @@ function isTriangle(/* a, b, c */) {
  */
 function doRectanglesOverlap(/* rect1, rect2 */) {
   throw new Error('Not implemented');
+  // if (rect1.width === rect2.width && rect1.height === rect2.height) {
+  //   return true;
+  // }
+  // return false;
 }
 
 
@@ -148,8 +171,14 @@ function doRectanglesOverlap(/* rect1, rect2 */) {
  *   { center: { x:0, y:0 }, radius:10 },  { x:10, y:10 }   => false
  *
  */
-function isInsideCircle(/* circle, point */) {
-  throw new Error('Not implemented');
+function isInsideCircle(circle, point) {
+  const cat1 = Math.abs(+circle.center.x - +point.x);
+  const cat2 = Math.abs(+circle.center.y - +point.y);
+  const hipotinuse = Math.sqrt(((cat1 ** 2) + (cat2 ** 2)));
+  if (hipotinuse >= circle.radius) {
+    return false;
+  }
+  return true;
 }
 
 
@@ -164,8 +193,21 @@ function isInsideCircle(/* circle, point */) {
  *   'abracadabra'  => 'c'
  *   'entente' => null
  */
-function findFirstSingleChar(/* str */) {
-  throw new Error('Not implemented');
+function findFirstSingleChar(str) {
+  // throw new Error('Not implemented');
+  const set = Array.from([...str]);
+  let ans = null;
+  // console.log(set);
+  for (let i = 0; i < set.length; i += 1) {
+    const item = set[i];
+    const copy = set.slice();
+    copy.splice(i, 1);
+    if (!copy.includes(item)) {
+      ans = item;
+      break;
+    }
+  }
+  return ans;
 }
 
 
